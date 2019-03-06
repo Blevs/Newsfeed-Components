@@ -129,6 +129,17 @@
   position: absolute;
   top: 10px;
   right: 10px;
+  font-size: 18px;
+  color: grey;
+}
+.article .close:hover {
+  color: red;
+  cursor: pointer;
+}
+.article.deleting {
+  transition: transform 0.2s, opacity 0.2s;
+  transform: scale(0);
+  opacity: 0;
 }
 .article .expandButton {
   position: absolute;

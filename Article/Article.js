@@ -7,6 +7,18 @@ class Article {
     this.expandButton.textContent = "expand";
     this.content = domElement.querySelector(".content");
     this.expandButton.addEventListener('click', this.expandArticle.bind(this));
+
+    const close = document.createElement("span");
+    close.textContent = "×";
+    close.classList.add("close");
+    domElement.insertBefore(close, domElement.firstChild);
+    this.close = close;
+    this.close.addEventListener('click', () => this.deleteArticle());
+  }
+
+  deleteArticle() {
+    this.domElement.classList.add("deleting");
+    setTimeout(() => this.domElement.parentNode.removeChild(this.domElement), 200);
   }
 
   expandArticle() {
