@@ -45,3 +45,39 @@ class Article {
 
 let articles = document.querySelectorAll(".article");
 articles.forEach((article) => new Article(article));
+
+
+function makeArticle(valuesObj) {
+  const article = document.createElement("div");
+  article.classList.add("article");
+  const heading = document.createElement("h2");
+  heading.textContent = valuesObj.heading;
+  const date = document.createElement("p");
+  date.classList.add("date");
+  date.textContent = valuesObj.date;
+  const content = document.createElement("div");
+  content.classList.add("content");
+  valuesObj.content.split("\n").forEach((line => {
+    const p = document.createElement("p");
+    p.textContent = line;
+    content.appendChild(p);
+  }));
+  const button = document.createElement("span");
+  button.classList.add("expandButton");
+  article.appendChild(heading);
+  article.appendChild(date);
+  article.appendChild(content);
+  article.appendChild(button);
+  document.querySelector(".articles").appendChild(article);
+  return new Article(article);
+}
+
+const composition = document.querySelector(".composition");
+const compButton = composition.querySelector("button");
+compButton.addEventListener('click', (e) => {
+  const valuesObj = {};
+  composition.querySelectorAll("input, textarea").forEach((elem) => {
+    valuesObj[elem.name] = elem.value;
+  });
+  makeArticle(valuesObj);
+});
