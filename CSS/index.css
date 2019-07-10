@@ -35,6 +35,211 @@
   margin: 0;
   font-size: 48px;
 }
+.menu-button {
+  position: absolute;
+  left: 20px;
+  cursor: pointer;
+}
+.menu {
+  display: none;
+  position: fixed;
+  top: 75px;
+  left: 0;
+  width: 350px;
+  height: 100vh;
+  /* This give the height 100% of the screen or, '100% of View Height' */
+  background-color: #81C784;
+  border: 1px solid #004D40;
+  border-left: none;
+  border-bottom: none;
+  z-index: 2;
+  /* This set the layer level of the element, it has precendence over initial level of 1*/
+  transform-origin: left;
+  overflow: hidden;
+}
+.menu ul li {
+  list-style-type: none;
+  font-size: 32px;
+  padding: 30px 0;
+  text-align: center;
+}
+.menu--open {
+  display: block;
+  animation: growX 0.2s ease-out;
+}
+.menu--close {
+  display: block;
+  width: 0;
+  animation: shrinkX 0.2s ease-in;
+}
+@keyframes growX {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0.5;
+    transform: scaleX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+@keyframes shrinkX {
+  0% {
+    width: 350px;
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  99% {
+    transform: scaleX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+.articles {
+  margin-top: 95px;
+}
+.article {
+  margin: 20px 10%;
+  padding: 0 20px 25px;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  background-color: white;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 2px 2px 2px lightgrey;
+  transition: height 1s;
+}
+.article h2 {
+  font-size: 28px;
+  padding: 0;
+  margin: 15px 0 0;
+}
+.article .date {
+  margin: 0;
+  font-size: 14px;
+}
+.article .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  color: grey;
+}
+.article .close:hover {
+  color: red;
+  cursor: pointer;
+}
+.article.deleting {
+  transition: transform 0.2s, opacity 0.2s;
+  transform: scale(0);
+  opacity: 0;
+}
+.article .expandButton {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  font-size: 12px;
+  color: grey;
+  cursor: pointer;
+  transform: translate(-50%);
+  background-color: white;
+}
+.article .content {
+  display: none;
+  transform-origin: top;
+  overflow: hidden;
+}
+.article .content.article-open {
+  display: block;
+  animation: growY 0.3s ease-out;
+}
+.article .content.article-close {
+  display: block;
+  height: 0;
+  animation: shrinkY 0.2s ease-in;
+}
+@keyframes growY {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+@keyframes shrinkY {
+  0% {
+    height: 100%;
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  99% {
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+.composition {
+  margin: 20px 10%;
+  padding: 20px 20px 25px;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  background-color: white;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 2px 2px 2px lightgrey;
+  transition: height 1s;
+  display: flex;
+  flex-direction: column;
+}
+.composition label {
+  margin: 0 5px;
+}
+.composition input {
+  width: 70%;
+}
+.composition textarea {
+  width: 100%;
+  height: 200px;
+}
+.composition input,
+.composition textarea {
+  display: block;
+  padding: 8px 10px;
+  margin: 7px 0 10px 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  border-radius: 5px;
+  border: solid 2px lightgrey;
+  transition: border 0.3s;
+}
+.composition input:hover,
+.composition textarea:hover {
+  border: solid 2px lightblue;
+}
+.composition input:focus,
+.composition textarea:focus {
+  border: solid 2px #679BB8;
+}
+.composition button {
+  float: right;
+}
 html,
 body {
   margin: 0;

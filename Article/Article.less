@@ -8,9 +8,10 @@
   border-radius: 10px;
   background-color: white;
   position: relative;
-  height: 50px;
+  height: 100%;
   overflow: hidden;
   box-shadow: 2px 2px 2px lightgrey;
+  transition: height 1s;
 
   h2 {
     font-size: 28px;
@@ -27,8 +28,19 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    font-size: 18px;
+    color: grey;
+    &:hover {
+      color: red;
+      cursor: pointer;
+    }
   }
 
+  &.deleting {
+    transition: transform 0.2s, opacity 0.2s;
+    transform: scale(0);
+    opacity: 0;
+  }
   .expandButton {
     position: absolute;
     bottom: 0;
@@ -39,12 +51,102 @@
     transform: translate(-50%);
     background-color: white;
   }
+
+  .content {
+    display: none;
+    transform-origin: top;
+    overflow: hidden;
+  }
+
+  .content.article-open {
+    display: block;
+    animation: growY 0.3s ease-out;
+  }
+
+  .content.article-close {
+    display: block;
+    height: 0;
+    animation: shrinkY 0.2s ease-in;
+  }
 }
 
-.article-open {
-  height: 400px;
+@keyframes growY {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
 }
 
+@keyframes shrinkY {
+  0% {
+    height: 100%;
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  99% {
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
 
+.composition {
+  margin: 20px 10%;
+  padding: 20px 20px 25px;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  background-color: white;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 2px 2px 2px lightgrey;
+  transition: height 1s;
+  display: flex;
+  flex-direction: column;
+  div {
+    // display: flex;
+    // justify-content: space-between;
+  }
+  label {
+    margin: 0 5px;
+  }
+  input {
+    width: 70%;
+  }
+  textarea {
+    width: 100%;
+    height: 200px;
+  }
 
+  input, textarea {
+    display: block;
+    padding: 8px 10px;
+    margin: 7px 0 10px 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    border-radius: 5px;
+    border: solid 2px lightgrey;
+    transition: border 0.3s;
+    &:hover {
+      border: solid 2px lightblue;
+    }
+    &:focus {
+      border: solid 2px #679BB8;
+    }
+  }
 
+  button {
+    float: right;
+  }
+}
